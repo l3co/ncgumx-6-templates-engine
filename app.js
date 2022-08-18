@@ -18,7 +18,8 @@ app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    const url = req.url;
+    res.status(404).render('404', { pageTitle: '404', urlRequested: url });
 });
 
 app.listen(3000);
